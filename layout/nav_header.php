@@ -13,18 +13,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                 <nav class="header__navbar">
                     <ul class="header__navbar-list">
                         <li class="header__navbar-item">
-                            <a class="header__navbar-item-link" href="congviec.php">Việc làm</a>
+                            <a class="header__navbar-item-link" href="congviec.php">Sinh viên</a>
                         </li>
+     
                         <li class="header__navbar-item">
-                            <?php if (isset($_SESSION['user'])) : ?>
-                                <a class="header__navbar-item-link" href="hoso.php">Hồ sơ</a>
-                            <?php else : ?>
-                                <a class="header__navbar-item-link" href="#">Hồ sơ</a>
-                            <?php endif; ?>
-
-                        </li>
-                        <li class="header__navbar-item">
-                            <a class="header__navbar-item-link" href="congty.php">Công ty</a>
+                            <a class="header__navbar-item-link" href="monhoc.php">Môn học</a>
                         </li>
                     </ul>
                     <ul class="header__navbar-list">
@@ -44,7 +37,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                             </li> 
                         <?php else : ?>
                             <div class="header__navbar-item">
-                                <a class="header__navbar-item-link header__navbar-item--strong" href="http://localhost/TKVL/dangxuat.php">
+                                <a class="header__navbar-item-link header__navbar-item--strong" href="http://localhost/QLSV/dangxuat.php">
                                     <i class="fa fa-user"></i><?php echo $_SESSION['user'] ?></a> </a>
                             </div>
                         <?php endif ?>

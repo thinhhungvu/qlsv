@@ -3,6 +3,9 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
+<?php
+
+?>
 <html>
     <head>
         <title>Hồ sơ</title>
@@ -97,7 +100,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </form>
 
         <div class="profile__containter__2">
-            <form action="<?php echo($_SERVER["SCRIPT_NAME"]); ?>" method="GET">
+            <form action="<?php echo($_SERVER["SCRIPT_NAME"]); ?>" method="GET" enctype="multipart/form-data>">
                 <input type="hidden" name="taikhoan" value="<?php echo($_SESSION["user"]); ?>">
                 <div class="profile__containter__title">Thông tin cơ bản</div>
                 <div class="hoten__gioitinh__form">
