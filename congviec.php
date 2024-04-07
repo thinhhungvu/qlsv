@@ -11,7 +11,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <?php
-    $nganhnghe = $db->fetchAll("SELECT * FROM nganhnghe");
+    $sql = "SELECT * FROM user";
+    $danhsachsinhvien = $db->fetchAll($sql);
     ?>
     <body>
         <!DOCTYPE html>
@@ -27,73 +28,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <body>
             <form action="" method="GET">
                 <div class="containter__job">
-                    <div class="search__job__containter">
-                        <div>
-                            <input class="search__form__input search__job__input" name="tencongviec" type="text" placeholder="Nhập tên công việc ?">
-                        </div>
-                        <div class="select-box">
-                            <select name="nganhnghe"  class="fa" >
-                                <option value="all">Tất cả ngành nghề</option>
-                                <?php foreach ($nganhnghe as $item) : ?>
-                                    <option value="<?php echo $item['manganhnghe'] ?>"><?php echo $item['tennganhnghe'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="row">
-                            <button class="btn btn--primary btn--normal" type="submit" name="form" value="submit">Tìm kiếm</button>
-                        </div>
-                    </div>
-                    <?php
-                    if (isset($_GET["tencongviec"]) && isset($_GET["nganhnghe"])) {
-                        echo "<h1>" . "Bạn đã thực hiện tìm kiếm với tên công việc là: "
-                        . $_GET["tencongviec"] . "</h1>";
-                        $nganhnghe = $_GET['nganhnghe'];
-                        $tencongviec = $_GET['tencongviec'];
-                        $query = "";
-                        if ($nganhnghe == "all") {
-                            $query = "SELECT congviec.tencongviec AS cv, congty.tencongty AS cty , 
-              congty.duongdanhinhanh AS imgcty FROM congty
-              INNER JOIN congty_nganhnghe ON congty.macongty = congty_nganhnghe.macongty
-              INNER JOIN nganhnghe ON congty_nganhnghe.manganhnghe = nganhnghe.manganhnghe
-              INNER JOIN congviec ON nganhnghe.manganhnghe = congviec.manganhnghe
-              WHERE (congviec.tencongviec LIKE '%$tencongviec%')";
-                        } else {
-                            $query = "SELECT congviec.tencongviec AS cv, congty.tencongty AS cty,
-                congty.duongdanhinhanh AS imgcty FROM congty
-              INNER JOIN congty_nganhnghe ON congty.macongty = congty_nganhnghe.macongty
-              INNER JOIN nganhnghe ON congty_nganhnghe.manganhnghe = nganhnghe.manganhnghe
-              INNER JOIN congviec ON nganhnghe.manganhnghe = congviec.manganhnghe
-              WHERE (congviec.tencongviec LIKE '%$tencongviec%' and nganhnghe.manganhnghe = $nganhnghe)";
-                        }
+          <?php
+            $order = 0;
+            foreach ($danhsachsinhvien as $sinhvien) {
 
-                        $rs = $db->fetchAll($query);
-                        $total_rows = $db->countData($query);
-                    }
-                    ?>
-
-
-                    <?php if (!empty($rs)) : ?>
-                        <?php foreach ($rs as $item) : ?>
+                $order++;
+                ?>
                             <div class="containter__job__item">
-                                <img src=<?php echo $item['imgcty'] ?> alt="Avatar" >
+                               
                                 <div class="containter__job__item__title">
                                     <div class="containter__job__item__title_one">
-                                        <?php echo $item['cv'] ?>
+                                        <?php echo $sinhvien['name'] ?>
                                     </div>
-                                    <div class="containter__job__item__title_two">
-                                        <?php echo $item['cty']; ?>
-                                    </div>
+                                    
+                                     <div class="containter__job__item__title_two">
+                                        Sinh nhật <?php echo $sinhvien['birthday']; ?>
+                                    </div>  
+                                     <div class="containter__job__item__title_two">
+                                        Giới tính <?php echo $sinhvien['gender']; ?>
+                                    </div>                            
                                 </div>
                                 <div class="containter__job__item--ungtuyen">
                                     <button class="btn btn--primary btn--normal btn--size-s" type="submit" name="form" value="submit">Ứng tuyển</button>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-
-
-
-
+                                <?php
+            }
+            ?>
+                  
                 </div>
 
             </form>

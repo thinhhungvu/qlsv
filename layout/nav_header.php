@@ -19,6 +19,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                         <li class="header__navbar-item">
                             <a class="header__navbar-item-link" href="monhoc.php">Môn học</a>
                         </li>
+
+                        <li class="header__navbar-item">
+                            <a class="header__navbar-item-link" href="congviec.php">Đăng ký môn học</a>
+                        </li>
                     </ul>
                     <ul class="header__navbar-list">
                         <li class="header__navbar-item">
