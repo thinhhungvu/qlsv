@@ -13,7 +13,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                 <nav class="header__navbar">
                     <ul class="header__navbar-list">
                         <li class="header__navbar-item">
-                            <a class="header__navbar-item-link" href="congviec.php">Sinh viên</a>
+                            <a class="header__navbar-item-link" href="sinhvien.php">Sinh viên</a>
                         </li>
      
                         <li class="header__navbar-item">
@@ -21,7 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                         </li>
 
                         <li class="header__navbar-item">
-                            <a class="header__navbar-item-link" href="congviec.php">Đăng ký môn học</a>
+                            <a class="header__navbar-item-link" href="dangkymonhoc.php">Đăng ký môn học</a>
                         </li>
                     </ul>
                     <ul class="header__navbar-list">

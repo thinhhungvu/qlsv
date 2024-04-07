@@ -48,9 +48,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                         Giới tính <?php echo $sinhvien['gender']; ?>
                                     </div>                            
                                 </div>
-                                <div class="containter__job__item--ungtuyen">
-                                    <button class="btn btn--primary btn--normal btn--size-s" type="submit" name="form" value="submit">Ứng tuyển</button>
-                                </div>
+                               
                             </div>
                                 <?php
             }

@@ -96,41 +96,64 @@
             background-color: rgba(0, 0, 0, 0.7);
         }
 
-.dialog-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    padding: 40px; /* Tăng padding để cung cấp khoảng trống xung quanh nội dung */
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 90%; /* Thay đổi width của dialog */
-    max-width: 900px; /* Giới hạn width tối đa */
-    height: 80%; /* Thay đổi height của dialog */
-    max-height: 80vh; /* Giới hạn height tối đa */
-    overflow-y: auto; /* Cho phép cuộn nội dung nếu nó quá dài */
-    display: flex; /* Sử dụng flexbox */
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    flex-direction: column; /* Sắp xếp các phần tử con theo chiều dọc */
+/* CSS cho tiêu đề */
+.dialog-content h3 {
+    font-size: 24px; /* Kích thước font */
+    margin-bottom: 20px; /* Khoảng cách dưới */
 }
-.dialog-content label {
-    font-size: 20px; /* Tăng kích thước font chữ của label */
-    margin-bottom: 10px; /* Tăng margin dưới của label */
-}
+
+/* CSS cho trường nhập */
 .dialog-content input[type="text"],
 .dialog-content input[type="number"] {
-    width: 50%; /* Đặt chiều rộng của input fields là 100% */
-    padding: 10px; /* Tăng padding để cung cấp khoảng trống xung quanh nội dung */
-    font-size: 16px; /* Điều chỉnh kích thước font chữ */
-    margin-bottom: 20px; /* Tăng margin dưới để tạo khoảng cách giữa các input fields */
+    font-size: 18px; /* Kích thước font */
+    padding: 10px; /* Khoảng cách giữa nội dung và viền */
+    width: 50%/* Chiều rộng */
+    box-sizing: border-box; /* Đảm bảo chiều rộng và padding đúng */
+    margin-bottom: 15px; /* Khoảng cách dưới */
 }
+
+/* CSS cho button */
 .dialog-content button {
-    padding: 15px 30px; /* Tăng padding để làm cho các nút lớn hơn */
-    margin: 10px; /* Thêm margin để tạo khoảng cách giữa các nút */
-    font-size: 18px; /* Điều chỉnh kích thước font chữ của các nút */
+    font-size: 18px; /* Kích thước font */
+    padding: 10px 20px; /* Kích thước padding */
+    background-color: #007BFF; /* Màu nền */
+    color: white; /* Màu chữ */
+    border: none; /* Không có viền */
+    cursor: pointer; /* Con trỏ chuột */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu nền */
 }
+
+.dialog {
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 1000; 
+    width: 400px; /* Độ rộng của dialog */
+    height: 400px; /* Chiều cao của dialog */
+    background-color: #ADD8E6; /* Màu xanh nhạt */
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.dialog-content {
+    padding: 20px; 
+    height: 100%; /* Chiều cao của nội dung sẽ đầy đủ dialog */
+    box-sizing: border-box; /* Đảm bảo padding và border không làm tăng kích thước */
+    display: flex; /* Sử dụng Flexbox */
+    flex-direction: column; /* Dọc theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+}
+
+/* Các CSS khác như đã trước */
+
+
+/* Các CSS khác như đã trước */
+
+
+/* Các CSS khác như đã trước */
+
+
 
         .close-button {
             position: absolute;
@@ -229,44 +252,51 @@
 </div>
 
 
-<div id="inputDialog" class="dialog">
+<div class="dialog" id="addSubjectDialog">
     <div class="dialog-content">
-       
-        
-        <label for="textInput1">Subject ID</label>
-        <input type="text" id="subjectID"><br><br>
-        
-        <label for="textInput2">Subject Name</label>
-        <input type="text" id="subjectName"><br><br>
-        
-        <label for="textInput3">Number Credit</label>
-        <input type="text" id="NumberCredit"><br><br>
-        
-        <button onclick="submitData()">Submit</button>
-        <button onclick="closeDialog()">Cancel</button>
+        <span class="close-button" onclick="closeDialog()">&times;</span>
+        <h3>Thêm môn học</h3>
+        <form action="" method="POST">
+            <label for="subjectName">Tên môn học:</label>
+            <div><input type="text" id="subjectName" name="subjectName" required></div>
+            
+            <div><label for="numberOfCredit">Số tín chỉ:</label></div>
+            <input type="number" id="numberOfCredit" name="numberOfCredit" required>
+
+            <div><button type="submit">Thêm</button></div>
+        </form>
     </div>
 </div>
 
 <script>
-    let inputDialog = document.getElementById('inputDialog');
-
     function openDialog() {
-        inputDialog.style.display = 'block';
+        document.getElementById('addSubjectDialog').style.display = 'block';
     }
 
     function closeDialog() {
-        inputDialog.style.display = 'none';
+        document.getElementById('addSubjectDialog').style.display = 'none';
     }
-
-    function submitData() {
-        let text1 = document.getElementById('subjectID').value;
-        let text2 = document.getElementById('subjectName').value;
-        let text3 = document.getElementById('NumberCredit').value;
-        closeDialog();
-    }
+</script>
 
 </script>
 </body>
 </html>
 
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $subjectName = $_POST['subjectName'];
+    $numberOfCredit = $_POST['numberOfCredit'];
+
+    // Thêm sinh viên vào cơ sở dữ liệu
+    $sql_qr = "INSERT INTO subject (name, number_of_credit) VALUES ('$subjectName', $numberOfCredit)";
+    $result = $db->query($sql_qr);
+
+    if ($result) {
+        echo "<script>alert('Thêm môn học thành công');</script>";
+    } else {
+        echo "<script>alert('Thêm môn học thất bại');</script>";
+    }
+}
+?>
 
