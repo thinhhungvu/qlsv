@@ -3,12 +3,83 @@
         $sql= "SELECT * FROM register";
         $danhsachdangky = $db->fetchAll($sql);
     ?>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
+   
+    $id = $_POST['delete_id'];
+
+    // Truy vấn để xóa dữ liệu
+    $sql = "DELETE FROM register WHERE student_id = $id";
+    $result = $db->query($sql);
+    echo "<script>window.location.href='dangkyhoc.php';</script>";
+      
+}
+?>
 <style type="text/css">
 
 
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+#editDangkyDialog {
+    display: none;
+}
+.dialog-content h3 {
+    font-size: 24px; /* Kích thước font */
+    margin-bottom: 20px; /* Khoảng cách dưới */
+}
 
+/* CSS cho trường nhập */
+.dialog-content input[type="text"],
+.dialog-content input[type="number"] {
+    font-size: 18px; /* Kích thước font */
+    padding: 10px; /* Khoảng cách giữa nội dung và viền */
+    width: 50%/* Chiều rộng */
+    box-sizing: border-box; /* Đảm bảo chiều rộng và padding đúng */
+    margin-bottom: 15px; /* Khoảng cách dưới */
+}
+
+/* CSS cho button */
+.dialog-content button {
+    font-size: 18px; /* Kích thước font */
+    padding: 10px 20px; /* Kích thước padding */
+    background-color: #007BFF; /* Màu nền */
+    color: white; /* Màu chữ */
+    border: none; /* Không có viền */
+    cursor: pointer; /* Con trỏ chuột */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu nền */
+}
+
+.dialog {
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 1000; 
+    width: 400px; /* Độ rộng của dialog */
+    height: 400px; /* Chiều cao của dialog */
+    background-color: #ADD8E6; /* Màu xanh nhạt */
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+.dialog-content {
+    position: relative; /* Thêm thuộc tính này để nút close có thể được định vị đúng */
+}
+
+.close-button {
+    position: absolute; /* Định vị nút close */
+    top: 10px; /* Căn lề trên */
+    right: 10px; /* Căn lề phải */
+    cursor: pointer; /* Con trỏ chuột */
+    font-size: 24px; /* Kích thước font */
+}
+.dialog-content {
+    padding: 20px; 
+    height: 100%; /* Chiều cao của nội dung sẽ đầy đủ dialog */
+    box-sizing: border-box; /* Đảm bảo padding và border không làm tăng kích thước */
+    display: flex; /* Sử dụng Flexbox */
+    flex-direction: column; /* Dọc theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+}
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
@@ -140,9 +211,7 @@ h2 a {
 </style>
 <h1><span class="blue">&lt;</span>QLSV<span class="blue">&gt;</span> <span class="yellow">Đăng ký</pan></h1>
 
-<button class="search__form__button" type="submit" onclick="openDialog()" style="background-color: goldenrod; color: white; position: relative; left: 50px;">
-    <span class="search__form__button__title">Thêm môn học</span>
-</button>
+
 
 
 
@@ -170,8 +239,13 @@ h2 a {
                     <td><?php echo $row['score'] ?></td>
                
                     <td class="btn-container">
-                        <button class="btn btn-edit">Sửa</button>
-                        <button class="btn btn-delete">Xóa</button>
+                        <button class="btn btn-edit" onclick="openDialog()">Sửa</button>
+                      
+                        
+                          <form method="post">
+                         
+                            <button type="submit" name="delete_id" class="btn btn-delete" value="<?php echo $row['student_id']; ?>">Xóa</button>
+                        </form>
                     </td>
                   </tr>
                   <?php
@@ -184,3 +258,31 @@ h2 a {
 
     </tbody>
 </table>
+<div class="dialog" id="editDangkyDialog">
+    <div class="dialog-content">
+        <span class="close-button" onclick="closeDialog()">&times;</span>
+        <h3>Thêm môn học</h3>
+        <form action="" method="POST">
+            <label for="subjectName">Tên sinh viên</label>
+            <div><input type="text" id="subjectName" name="subjectName" required></div>
+            
+            <div><label for="numberOfCredit">Tên môn học</label></div>
+            <input type="number" id="numberOfCredit" name="numberOfCredit" required>
+
+             <div><label for="numberOfCredit">Điểm</label></div>
+            <input type="number" id="numberOfCredit" name="numberOfCredit" required>
+
+            <div><button type="submit">Thêm</button></div>
+        </form>
+    </div>
+</div>
+<script>
+    function openDialog() {
+        document.getElementById('editDangkyDialog').style.display = 'block';
+    }
+
+    function closeDialog() {
+        document.getElementById('editDangkyDialog').style.display = 'none';
+    }
+</script>
+

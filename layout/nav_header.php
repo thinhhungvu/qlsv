@@ -21,7 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                         </li>
 
                         <li class="header__navbar-item">
-                            <a class="header__navbar-item-link" href="dangkymonhoc.php">Đăng ký môn học</a>
+                            <a class="header__navbar-item-link" href="dangkyhoc.php">Đăng ký học</a>
                         </li>
                     </ul>
                     <ul class="header__navbar-list">

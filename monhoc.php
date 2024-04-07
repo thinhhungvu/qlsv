@@ -278,7 +278,6 @@
     }
 </script>
 
-</script>
 </body>
 </html>
 
@@ -297,6 +296,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "<script>alert('Thêm môn học thất bại');</script>";
     }
+    echo "<script>window.location.href='monhoc.php';</script>";
 }
+
 ?>
 
